@@ -15,3 +15,11 @@ export const getAuditDataForStandard = async (standard: AuditStandard) => {
   const loader = unifiedAuditData[standard];
   return await loader();
 };
+
+// Add default export
+const UnifiedAuditData = {
+  unifiedAuditData,
+  getAuditDataForStandard
+};
+
+export default UnifiedAuditData;

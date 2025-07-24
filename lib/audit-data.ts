@@ -453,3 +453,8 @@ export const ISO9001_QUESTIONS = processedQuestions;
 export const auditQuestions = processedQuestions;
 
 export default auditQuestions;
+
+export const auditData = {
+  questions: ISO9001_QUESTIONS,
+  buildQuestionHierarchy
+};

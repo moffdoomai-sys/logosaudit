@@ -572,3 +572,9 @@ export function buildISO45001QuestionHierarchy(questions: AuditQuestion[]): Audi
 export const ISO45001_QUESTIONS = buildISO45001QuestionHierarchy(iso45001QuestionsWithGuidance);
 
 export default ISO45001_QUESTIONS;
+
+// Add this at the very end of the file
+export const iso45001Data = {
+  questions: ISO45001_QUESTIONS,
+  buildQuestionHierarchy: buildISO45001QuestionHierarchy
+};
