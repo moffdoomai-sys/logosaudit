@@ -57,3 +57,6 @@ export interface AuditWithRelations extends Audit {
   findings?: Finding[];
   documents?: Document[];
 }
+
+// Alias for Document type (some files might use FirebaseDocument instead of Document)
+export type FirebaseDocument = Document;
