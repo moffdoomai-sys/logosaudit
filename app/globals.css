@@ -1,0 +1,191 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 262.1 83.3% 57.8%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 220 14.3% 95.9%;
+    --secondary-foreground: 220.9 39.3% 11%;
+    --muted: 220 14.3% 95.9%;
+    --muted-foreground: 220 8.9% 46.1%;
+    --accent: 220 14.3% 95.9%;
+    --accent-foreground: 220.9 39.3% 11%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 262.1 83.3% 57.8%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 263.4 70% 50.4%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 263.4 70% 50.4%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* LogosAudit Custom Styles */
+.logos-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.logos-card {
+  @apply bg-white/80 backdrop-blur-sm border border-gray-200/50 shadow-sm hover:shadow-lg transition-all duration-300 hover:border-violet-200/50;
+}
+
+.logos-button-primary {
+  @apply bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-600 hover:to-purple-700 text-white shadow-sm hover:shadow-md transition-all duration-200;
+}
+
+.logos-button-secondary {
+  @apply bg-white/70 border border-gray-200 hover:bg-white hover:border-violet-200 text-gray-700 hover:text-violet-700 transition-all duration-200;
+}
+
+/* Custom scrollbar with softer colors */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  @apply bg-gray-100/50 rounded-full;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-violet-200 rounded-full hover:bg-violet-300;
+}
+
+/* Enhanced animations */
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.slide-in {
+  animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.scale-in {
+  animation: scaleIn 0.3s ease-out;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Modern risk level indicators with softer colors */
+.risk-critical {
+  @apply border-l-4 border-red-400 bg-red-50/70;
+}
+
+.risk-high {
+  @apply border-l-4 border-orange-400 bg-orange-50/70;
+}
+
+.risk-medium {
+  @apply border-l-4 border-amber-400 bg-amber-50/70;
+}
+
+.risk-low {
+  @apply border-l-4 border-emerald-400 bg-emerald-50/70;
+}
+
+/* Modern score indicators with improved contrast */
+.score-compliant {
+  @apply bg-emerald-100/80 text-emerald-700 border-emerald-200/60;
+}
+
+.score-minor-nc {
+  @apply bg-amber-100/80 text-amber-700 border-amber-200/60;
+}
+
+.score-major-nc {
+  @apply bg-orange-100/80 text-orange-700 border-orange-200/60;
+}
+
+.score-critical-nc {
+  @apply bg-red-100/80 text-red-700 border-red-200/60;
+}
+
+.score-not-assessed {
+  @apply bg-slate-100/80 text-slate-600 border-slate-200/60;
+}
+
+/* Typography enhancements */
+.logos-heading {
+  @apply font-semibold text-gray-900 tracking-tight;
+}
+
+.logos-subheading {
+  @apply font-medium text-gray-700;
+}
+
+.logos-text {
+  @apply text-gray-600 leading-relaxed;
+}
+
+.logos-text-muted {
+  @apply text-gray-500;
+}
