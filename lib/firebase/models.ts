@@ -60,3 +60,4 @@ export interface AuditWithRelations extends Audit {
 
 // Alias for Document type (some files might use FirebaseDocument instead of Document)
 export type FirebaseDocument = Document;
+// Trigger deployment
