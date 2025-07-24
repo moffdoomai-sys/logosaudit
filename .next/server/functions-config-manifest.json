@@ -1,1 +1,0 @@
-{"version":1,"functions":{"/api/documents/[auditId]/[documentId]":{},"/api/audits/[id]/findings":{},"/api/audits":{},"/api/documents/[auditId]":{},"/api/audits/[id]":{},"/api/documents/upload":{}}}
