@@ -1,0 +1,121 @@
+generator client {
+    provider = "prisma-client-js"
+    binaryTargets = ["native", "linux-musl-arm64-openssl-3.0.x"]
+    output = "/home/ubuntu/iso9001-audit-tool/node_modules/.prisma/client"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model User {
+    id        String   @id @default(cuid())
+    email     String   @unique
+    name      String
+    title     String?
+    company   String?
+    phone     String?
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    
+    // Relations
+    auditsAsLead Audit[] @relation("LeadAuditor")
+    
+    @@map("users")
+}
+
+model Audit {
+    id              String      @id @default(cuid())
+    title           String
+    dateStarted     DateTime    @default(now())
+    dateCompleted   DateTime?
+    status          AuditStatus @default(IN_PROGRESS)
+    
+    // Company Information
+    companyName     String
+    companyAddress  String
+    
+    // Audit Team
+    leadAuditorId   String
+    leadAuditor     User        @relation("LeadAuditor", fields: [leadAuditorId], references: [id])
+    
+    // Audit Configuration
+    isoStandard      String      @default("ISO9001") // ISO9001 or ISO45001
+    selectedSections String[]    @default([])
+    customScope      Boolean     @default(false)
+    
+    // Progress Tracking
+    completionPercentage Float   @default(0)
+    overallScore        Float?
+    
+    // Metadata
+    createdAt       DateTime    @default(now())
+    updatedAt       DateTime    @updatedAt
+    
+    // Relations
+    interviewees    Interviewee[]
+    findings        AuditFinding[]
+    omittedQuestions OmittedQuestion[]
+    
+    @@map("audits")
+}
+
+model Interviewee {
+    id          String @id @default(cuid())
+    auditId     String
+    name        String
+    jobTitle    String
+    department  String?
+    email       String?
+    
+    // Relations
+    audit       Audit  @relation(fields: [auditId], references: [id], onDelete: Cascade)
+    
+    @@map("interviewees")
+}
+
+model AuditFinding {
+    id              String      @id @default(cuid())
+    auditId         String
+    questionId      String
+    score           FindingScore
+    notes           String      @default("")
+    evidenceNotes   String      @default("")
+    timestamp       DateTime    @default(now())
+    
+    // Relations
+    audit           Audit       @relation(fields: [auditId], references: [id], onDelete: Cascade)
+    
+    @@unique([auditId, questionId])
+    @@map("audit_findings")
+}
+
+model OmittedQuestion {
+    id          String @id @default(cuid())
+    auditId     String
+    questionId  String
+    reason      String?
+    omittedAt   DateTime @default(now())
+    
+    // Relations
+    audit       Audit  @relation(fields: [auditId], references: [id], onDelete: Cascade)
+    
+    @@unique([auditId, questionId])
+    @@map("omitted_questions")
+}
+
+enum AuditStatus {
+    DRAFT
+    IN_PROGRESS
+    COMPLETED
+    CANCELLED
+}
+
+enum FindingScore {
+    COMPLIANT
+    MINOR_NC
+    MAJOR_NC
+    CRITICAL_NC
+    NOT_ASSESSED
+}
